@@ -1,22 +1,10 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
-import Country from './country'
-import Wrapper from './wrapper'
 import styled from 'styled-components'
 
-const CountryListStyled = styled.div`
-  display: grid;
-  grid-row-gap: 2.3em;
-  grid-auto-flow: columns;
-  grid-column-gap: 66px;
-  grid-template-columns: repeat(auto-fill, 270px);
-  background: var(--background);
-  justify-content: center;
-  padding: 3em 0;
-`
+import { Country, Wrapper } from '../components'
 
-function CountryList () {
+export function CountryList () {
   const dispatch = useDispatch()
 
   const countryListByName = useSelector((state) => state.countryListByName)
@@ -34,7 +22,7 @@ function CountryList () {
 
   // const [countryList, setCountryList] = useState([])
   useEffect(() => {
-    fetch('https://restcountries.eu/rest/v2/all')
+    window.fetch('https://restcountries.eu/rest/v2/all')
       .then((response) => response.json())
       .then((list) => {
         dispatch({
@@ -42,9 +30,7 @@ function CountryList () {
           payload: list
         })
       })
-      .catch(() => {
-        alert('hubo un error, que dolor que dolo que pena')
-      })
+      .catch(() => (window.alert('hubo un error, que dolor que dolo que pena')))
   }, [dispatch])
 
   return (
@@ -54,15 +40,15 @@ function CountryList () {
           countryList.map(({ name, flag, population, capital, region, nativeName, cioc, alpha2Code }) => {
             return (
               <Country
+                key={name}
+                alpha2Code={alpha2Code}
+                capital={capital}
+                cioc={cioc}
                 flag={flag}
                 name={name}
-                key={name}
+                nativeName={nativeName}
                 population={population}
                 region={region}
-                capital={capital}
-                nativeName={nativeName}
-                cioc={cioc}
-                alpha2Code={alpha2Code}
               />
             )
           })
@@ -72,4 +58,13 @@ function CountryList () {
   )
 }
 
-export default CountryList
+const CountryListStyled = styled.div`
+  display: grid;
+  grid-row-gap: 2.3em;
+  grid-auto-flow: columns;
+  grid-column-gap: 66px;
+  grid-template-columns: repeat(auto-fill, 270px);
+  background: var(--background);
+  justify-content: center;
+  padding: 3em 0;
+`

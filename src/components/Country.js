@@ -1,8 +1,27 @@
-import React from 'react'
 import { useHistory } from 'react-router-dom'
-
 import slugify from 'slugify'
 import styled from 'styled-components'
+
+export function Country ({ alpha2Code, capital, flag, name, population, region }) {
+  const history = useHistory()
+
+  const handleClick = () => {
+    // const id = cioc || name
+    history.push(`/country/${slugify(alpha2Code)}`)
+  }
+
+  return (
+    <CountryStyled onClick={handleClick}>
+      <img alt='' loading='lazy' src={flag} />
+      <div className='details'>
+        <h2>{name}</h2>
+        <p><strong>Population:</strong> {population}</p>
+        <p><strong>Region:</strong> {region}</p>
+        <p><strong>Capital:</strong> {capital}</p>
+      </div>
+    </CountryStyled>
+  )
+}
 
 const CountryStyled = styled.div`
   cursor: pointer;
@@ -40,35 +59,3 @@ const CountryStyled = styled.div`
     margin-bottom: .5rem;
   }
 `
-
-function Country ({
-  flag,
-  name,
-  population,
-  region,
-  capital,
-  nativeName,
-  cioc,
-  alpha2Code
-}) {
-  const history = useHistory()
-  function handleClick () {
-    // const id = cioc || name
-    history.push(`/country/${slugify(alpha2Code)}`)
-  }
-
-  return (
-    <CountryStyled onClick={handleClick}>
-      <img loading='lazy' src={flag} alt='' />
-      <div className='details'>
-        <h2>{name}</h2>
-        {/* <p><strong>AF:</strong> {alpha2Code}</p> */}
-        <p><strong>Population:</strong> {population}</p>
-        <p><strong>Region:</strong> {region}</p>
-        <p><strong>Capital:</strong> {capital}</p>
-      </div>
-    </CountryStyled>
-  )
-}
-
-export default Country

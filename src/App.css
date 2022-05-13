@@ -16,7 +16,6 @@ main {
   min-height: 100vh;
 }
 
-
 .is-dark-mode {
   --black: white;
   --white: #273542;

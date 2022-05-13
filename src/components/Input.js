@@ -1,6 +1,13 @@
-import React from 'react'
-
 import styled from 'styled-components'
+
+export function Input ({ ...props }) {
+  return (
+    <InputStyled>
+      <i className='fas fa-search' />
+      <input type='text' {...props} />
+    </InputStyled>
+  )
+}
 
 const InputStyled = styled.label`
   display: inline-flex;
@@ -29,14 +36,3 @@ const InputStyled = styled.label`
     }
   }
 `
-
-function Input ({ ...props }) {
-  return (
-    <InputStyled>
-      <i className='fas fa-search' />
-      <input type='text' {...props} />
-    </InputStyled>
-  )
-}
-
-export default Input
