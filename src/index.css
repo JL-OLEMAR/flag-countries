@@ -1,4 +1,17 @@
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
+@font-face {
+  font-family: 'Nunito Sans';
+  font-display: swap;
+  font-style: normal;
+  src: url('/fonts/NunitoSans-Regular.woff2') format('woff2'),
+    url('/fonts/NunitoSans-Regular.woff') format('woff');
+}
+
+:root {
+  --black: #111517;
+  --white: white;
+  --background: #fafafa;
+}
+
+html {
+  font-size: 16px;
 }
