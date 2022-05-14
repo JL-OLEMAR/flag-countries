@@ -6,7 +6,6 @@ import { Country, Wrapper } from '../components'
 
 export function CountryList () {
   const dispatch = useDispatch()
-
   const countryListByName = useSelector((state) => state.countryListByName)
 
   const countryList = useSelector((state) => {
@@ -20,24 +19,32 @@ export function CountryList () {
     return state.countryList
   })
 
-  // const [countryList, setCountryList] = useState([])
   useEffect(() => {
-    window.fetch('https://restcountries.eu/rest/v2/all')
-      .then((response) => response.json())
+    window.fetch('https://restcountries.com/v2/all')
+      .then((resp) => resp.json())
       .then((list) => {
         dispatch({
           type: 'SET_COUNTRY_LIST',
           payload: list
         })
       })
-      .catch(() => (window.alert('hubo un error, que dolor que dolo que pena')))
+      .catch(() => window.alert('hubo un error'))
   }, [dispatch])
 
   return (
     <Wrapper>
       <CountryListStyled>
-        {
-          countryList.map(({ name, flag, population, capital, region, nativeName, cioc, alpha2Code }) => {
+        {countryList.map(
+          ({
+            name,
+            flag,
+            population,
+            capital,
+            region,
+            nativeName,
+            cioc,
+            alpha2Code
+          }) => {
             return (
               <Country
                 key={name}
@@ -51,8 +58,8 @@ export function CountryList () {
                 region={region}
               />
             )
-          })
-        }
+          }
+        )}
       </CountryListStyled>
     </Wrapper>
   )

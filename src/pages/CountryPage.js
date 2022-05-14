@@ -5,18 +5,16 @@ import styled from 'styled-components'
 import { CountrySelected, Wrapper } from '../components'
 
 export function CountryPage ({ match, history }) {
-  const DBcountry = useSelector(state => state.countryList.find(item => (
-    item.alpha2Code === match.params.id
-  )))
+  const DBcountry = useSelector((state) =>
+    state.countryList.find((item) => item.alpha2Code === match.params.id)
+  )
   const [country, setCountry] = useState(DBcountry)
 
   useEffect(() => {
     if (!country) {
-      window.fetch(`https://restcountries.eu/rest/v2/alpha/${match.params.id.toLowerCase()}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setCountry(data)
-        })
+      window.fetch(`https://restcountries.com/v2/alpha/${match.params.id.toLowerCase()}`)
+        .then((resp) => resp.json())
+        .then(setCountry)
     }
   }, [country, match.params.id])
 
@@ -27,7 +25,9 @@ export function CountryPage ({ match, history }) {
   return (
     <CountryPageStyled>
       <Wrapper>
-        <button className='back' onClick={handleClick}><i className='fas fa-long-arrow-alt-left' /> Back</button>
+        <button className='back' onClick={handleClick}>
+          <i className='fas fa-long-arrow-alt-left' /> Back
+        </button>
         <CountrySelected {...country} />
       </Wrapper>
     </CountryPageStyled>
@@ -37,8 +37,8 @@ export function CountryPage ({ match, history }) {
 const CountryPageStyled = styled.div`
   .back {
     background: var(--white);
-    box-shadow: 0 0 5px rgba(0,0,0,.3);
-    padding: .7em 2.2em;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    padding: 0.7em 2.2em;
     border-radius: 5px;
     border: none;
     cursor: pointer;
