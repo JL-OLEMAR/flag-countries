@@ -24,7 +24,7 @@ export function CountrySelected ({
               <strong>Native Name: </strong>{nativeName}
             </p>
             <p>
-              <strong>Population: </strong>{population}
+              <strong>Population: </strong>{new Intl.NumberFormat().format(population)}
             </p>
             <p>
               <strong>Region: </strong>{region}

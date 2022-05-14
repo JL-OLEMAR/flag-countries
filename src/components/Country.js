@@ -22,7 +22,7 @@ export function Country ({
       <div className='details'>
         <h2>{name}</h2>
         <p>
-          <strong>Population: </strong>{population}
+          <strong>Population: </strong> {new Intl.NumberFormat().format(population)}
         </p>
         <p>
           <strong>Region: </strong>{region}
