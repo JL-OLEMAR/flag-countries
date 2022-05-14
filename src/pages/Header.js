@@ -13,18 +13,14 @@ export function Header ({ setDarkMode, darkMode }) {
       <Wrapper>
         <div className='content'>
           <Link to='/'>
-            <h1>
-              Where in the world?
-            </h1>
+            <h1>Flags of the world</h1>
           </Link>
           <div className='dark-mode'>
             <p onClick={handleClick}>
               <span className='moon'>
-                {
-                  darkMode
-                    ? <i className='fas fa-moon' />
-                    : <i className='far fa-moon' />
-                }
+                {darkMode
+                  ? <i className='fas fa-moon' />
+                  : <i className='far fa-moon' />}
               </span>
               Dark Mode
             </p>
@@ -38,7 +34,7 @@ export function Header ({ setDarkMode, darkMode }) {
 const HeaderStyled = styled.div`
   background: var(--white);
   margin-bottom: 1em;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.06);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
   .content {
     height: 80px;
     display: flex;

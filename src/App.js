@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
@@ -18,30 +18,24 @@ const store = createStore(reducer, initialState)
 
 export function App () {
   const [darkMode, setDarkMode] = useState(false)
-  const [checked, setChecked] = useState(false) // eslint-disable-line no-unused-vars
   const mainClass = darkMode ? 'is-dark-mode' : 'is-light-mode'
 
+  // mq: Media Query
   const changeMedia = (mq) => {
     setDarkMode(mq.matches)
-    setChecked(mq.matches)
   }
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-color-scheme: dark)')
-
-    mq.addListener(changeMedia)
+    mq.addEventListener('change', changeMedia)
     setDarkMode(mq.matches)
-    setChecked(mq.matches)
-
-    return () => {
-      mq.removeListener(changeMedia)
-    }
+    return () => mq.removeEventListener('change', changeMedia)
   }, [])
 
   return (
     <main className={mainClass}>
       <Provider store={store}>
-        <Router>
+        <BrowserRouter>
           <Header darkMode={darkMode} setDarkMode={setDarkMode} />
           <Switch>
             <Route component={CountryPage} path='/country/:id' />
@@ -50,7 +44,7 @@ export function App () {
               <CountryList />
             </Route>
           </Switch>
-        </Router>
+        </BrowserRouter>
       </Provider>
     </main>
   )

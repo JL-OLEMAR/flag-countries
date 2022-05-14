@@ -11,8 +11,7 @@ export function CountrySelected ({
   topLevelDomain,
   currencies = [],
   languages = [],
-  borders = [],
-  alpha2Code
+  borders = []
 }) {
   return (
     <CountrySelectedStyled>
@@ -21,25 +20,48 @@ export function CountrySelected ({
         <h2>{name}</h2>
         <div className='grid'>
           <div>
-            <p><strong>Native Name:</strong> {nativeName}</p>
-            <p><strong>Population:</strong> {population}</p>
-            <p><strong>Region:</strong> {region}</p>
-            <p><strong>Sub Region:</strong> {subregion}</p>
-            <p><strong>Capital:</strong> {capital}</p>
+            <p>
+              <strong>Native Name: </strong>{nativeName}
+            </p>
+            <p>
+              <strong>Population: </strong>{population}
+            </p>
+            <p>
+              <strong>Region: </strong>{region}
+            </p>
+            <p>
+              <strong>Sub Region: </strong>{subregion}
+            </p>
+            <p>
+              <strong>Capital: </strong>{capital}
+            </p>
           </div>
           <div>
-            <p><strong>Top Level Domain:</strong> {topLevelDomain}</p>
             <p>
-              <strong>Currencies:</strong>
-              {currencies.map((item, i) => <span key={i}>{item.name}</span>)}
+              <strong>Top Level Domain: </strong>{topLevelDomain}
             </p>
-            <p className='languages'><strong>Languages:</strong>
-              {languages.map((item, i) => <span key={i}>{item.name}</span>)}
+            <p>
+              <strong>Currencies: </strong>
+              {currencies.map((item, i) => (
+                <span key={i}>{item.name}</span>
+              ))}
+            </p>
+            <p className='languages'>
+              <strong>Languages: </strong>
+              {languages.map((item, i) => (
+                <span key={i}>{item.name}</span>
+              ))}
             </p>
           </div>
         </div>
-        <p className='borders'><strong>Border Countries:</strong></p>
-        {borders.map((item, i) => <span key={i} className='border-item'>{item}</span>)}
+        <p className='borders'>
+          <strong>Border Countries: </strong>
+        </p>
+        {borders.map((item, i) => (
+          <span key={i} className='border-item'>
+            {item}
+          </span>
+        ))}
       </div>
     </CountrySelectedStyled>
   )
@@ -57,10 +79,10 @@ const CountrySelectedStyled = styled.div`
     grid-row-gap: 1em;
   }
   .border-item {
-    padding: .5em 2em;
+    padding: 0.5em 2em;
     border-radius: 5px;
     margin-right: 15px;
-    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     display: inline-flex;
     margin-bottom: 15px;
     background: var(--white);

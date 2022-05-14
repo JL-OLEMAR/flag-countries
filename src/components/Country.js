@@ -2,11 +2,17 @@ import { useHistory } from 'react-router-dom'
 import slugify from 'slugify'
 import styled from 'styled-components'
 
-export function Country ({ alpha2Code, capital, flag, name, population, region }) {
+export function Country ({
+  alpha2Code,
+  capital,
+  flag,
+  name,
+  population,
+  region
+}) {
   const history = useHistory()
 
   const handleClick = () => {
-    // const id = cioc || name
     history.push(`/country/${slugify(alpha2Code)}`)
   }
 
@@ -15,9 +21,15 @@ export function Country ({ alpha2Code, capital, flag, name, population, region }
       <img alt='' loading='lazy' src={flag} />
       <div className='details'>
         <h2>{name}</h2>
-        <p><strong>Population:</strong> {population}</p>
-        <p><strong>Region:</strong> {region}</p>
-        <p><strong>Capital:</strong> {capital}</p>
+        <p>
+          <strong>Population: </strong>{population}
+        </p>
+        <p>
+          <strong>Region: </strong>{region}
+        </p>
+        <p>
+          <strong>Capital: </strong>{capital}
+        </p>
       </div>
     </CountryStyled>
   )
@@ -27,8 +39,7 @@ const CountryStyled = styled.div`
   cursor: pointer;
   text-align: left;
   border-radius: 5px;
-  /* overflow: hidden; */
-  box-shadow: 0 0 7px 2px rgba(0,0,0,.03);
+  box-shadow: 0 0 7px 2px rgba(0, 0, 0, 0.03);
   &:hover .details {
     border-radius: 0 0 5px 5px;
     border: 1px solid var(--black);
@@ -45,7 +56,7 @@ const CountryStyled = styled.div`
     padding: 1.5em;
     border: 1px solid transparent;
     border-top: none;
-    transition: .3s border;
+    transition: 0.3s border;
     background: var(--white);
   }
   h2 {
@@ -55,7 +66,7 @@ const CountryStyled = styled.div`
     font-weight: 700;
   }
   p {
-    font-size: .9em;
-    margin-bottom: .5rem;
+    font-size: 0.9em;
+    margin-bottom: 0.5rem;
   }
 `

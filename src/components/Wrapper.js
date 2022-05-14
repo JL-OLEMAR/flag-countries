@@ -1,11 +1,7 @@
 import styled from 'styled-components'
 
 export function Wrapper ({ children }) {
-  return (
-    <WrapperStyled>
-      {children}
-    </WrapperStyled>
-  )
+  return <WrapperStyled>{children}</WrapperStyled>
 }
 
 const WrapperStyled = styled.div`
